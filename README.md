@@ -49,13 +49,41 @@ A variável `awareness` decresce a cada frame enquanto distraído e se recupera 
 
 ## Instalação
 
+### Linux / Windows
 ```bash
-# Python 3.9+
 pip install -r requirements.txt
 ```
 
+### macOS com Anaconda (Python 3.12+)
+
+O `opencv-python` instalado via `pip` no Anaconda depende de `libvorbis` que
+pode estar ausente, causando `ImportError: Library not loaded: libvorbis`.
+
+**Solução recomendada — instalar o OpenCV pelo conda-forge:**
+
+```bash
+conda install -c conda-forge opencv
+pip install mediapipe numpy
+```
+
+**Alternativa — instalar apenas a biblioteca ausente:**
+
+```bash
+conda install -c conda-forge libvorbis
+pip install -r requirements.txt
+```
+
+> **Python 3.13:** o MediaPipe ainda não tem wheels oficiais para Python 3.13.
+> Use Python 3.11 ou 3.12:
+> ```bash
+> conda create -n dm python=3.11
+> conda activate dm
+> conda install -c conda-forge opencv
+> pip install mediapipe numpy
+> ```
+
 ### Dependências
-- `opencv-python >= 4.8`
+- `opencv-python >= 4.8` (ou `opencv` via conda-forge)
 - `mediapipe >= 0.10`
 - `numpy >= 1.24`
 
